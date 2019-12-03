@@ -1,0 +1,17 @@
+{
+    "name": "liaosp\/ali_open",
+    "description": "Package description here.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "liaosp.top",
+            "email": "1194008361@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Liaosp\\AliOpen\\": "src"
+        }
+    }
+}
