@@ -22,6 +22,10 @@ $ composer require liaosp/ali_open -vvv
         var_dump($res);
 ```
 
+和我做朋友？
+
+https://www.cnblogs.com/liaosp/p/11075260.html
+
 ## Contributing
 
 You can contribute in one of three ways:
