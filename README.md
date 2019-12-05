@@ -11,9 +11,16 @@ $ composer require liaosp/ali_open -vvv
 
 ## Usage
 
-说明：本例子是因为学习官方sdk太累了没有去学，所以自己封装一下简单的签名请求，供学习参考
+说明：本例子是因为学习官方sdk太累了没有去学，所以自己封装一下简单的签名请求
 
-
+```php
+        $obj = new \Liaosp\AliOpen\AliOpen();
+        $obj->setAppkey('你的appkey');
+        $obj->setAppsecret('你的秘钥');
+        $obj->setAccessToken('自己想办法去获取token，如果设置的是多用户单用户的直接复制，应用管理中的token');
+        $res =$obj->order->setApi('com.alibaba.trade:alibaba.trade.getBuyerOrderList-1')->get();
+        var_dump($res);
+```
 
 ## Contributing
 
