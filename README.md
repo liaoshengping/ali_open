@@ -22,6 +22,29 @@ $ composer require liaosp/ali_open -vvv
         var_dump($res);
 ```
 
+项目中可以继承他：
+
+````
+<?php
+
+
+namespace App\Services\AliOpen;
+
+
+class AliOpen extends \Liaosp\AliOpen\AliOpen
+{
+    public function __construct($params = array())
+    {
+        $this->setAppkey('3937604');
+        $this->setAppsecret('0RsvFZYVQd');
+        $this->access_token = '06410386-242c-41f6-8a20-5e7e0d2b6229';
+        parent::__construct($params);
+    }
+}
+
+````
+
+
 和我做朋友？
 
 https://www.cnblogs.com/liaosp/p/11075260.html
