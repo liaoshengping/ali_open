@@ -1,6 +1,6 @@
 {
     "name": "liaosp\/ali_open",
-    "description": "Package description here.",
+    "description": "阿里巴巴开放平台sdk ，签名算法",
     "license": "MIT",
     "authors": [
         {

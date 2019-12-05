@@ -18,7 +18,7 @@ $ composer require liaosp/ali_open -vvv
         $obj->setAppkey('你的appkey');
         $obj->setAppsecret('你的秘钥');
         $obj->setAccessToken('自己想办法去获取token，如果设置的是多用户单用户的直接复制，应用管理中的token');
-        $res =$obj->order->setApi('com.alibaba.trade:alibaba.trade.getBuyerOrderList-1')->get();
+        $res =$obj->order->setApi('com.alibaba.trade:alibaba.trade.getBuyerOrderList-1')->get(); //api 就是阿里巴巴文档中的
         var_dump($res);
 ```
 
