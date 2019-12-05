@@ -12,9 +12,9 @@ class ContainerBase extends Container
 
     public $base_url;
 
-    public $appkey='3937604';
+    public $appkey='';
 
-    public $appsecret='0RsvFZYVQd';
+    public $appsecret='';
 
     public $access_token = '06410386-242c-41f6-8a20-5e7e0d2b6229';
 

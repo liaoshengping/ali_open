@@ -13,6 +13,8 @@ $ composer require liaosp/ali_open -vvv
 
 说明：本例子是因为学习官方sdk太累了没有去学，所以自己封装一下简单的签名请求，供学习参考
 
+
+
 ## Contributing
 
 You can contribute in one of three ways:
