@@ -35,8 +35,8 @@ class AliOpen extends \Liaosp\AliOpen\AliOpen
 {
     public function __construct($params = array())
     {
-        $this->setAppkey('3937604');
-        $this->setAppsecret('0RsvFZYVQd');
+        $this->setAppkey('39376**');
+        $this->setAppsecret('0RsvFZYV**');
         $this->access_token = '06410386-242c-41f6-8a20-5e7e0d2b6229';
         parent::__construct($params);
     }
