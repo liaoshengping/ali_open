@@ -51,4 +51,13 @@ class ContainerBase extends Container
     {
         $this->appkey = $appkey;
     }
+
+    /**
+     * @param string $access_token
+     */
+    public function setAccessToken($access_token)
+    {
+        $this->access_token = $access_token;
+    }
+
 }
