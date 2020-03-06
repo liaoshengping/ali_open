@@ -17,6 +17,8 @@ class BaseClient
 
     public $url_info;
 
+    protected $postData;
+
     public $res_url;
 
     public function __construct(Container $app)
@@ -57,7 +59,7 @@ class BaseClient
 
         //签名
         $code_sign = strtoupper(bin2hex(hash_hmac("sha1", $sign_str, $appSecret, true)));
-
+        $this->postData  = $code_arr;
         $this->res_url =  $this->base_url.$apiInfo.'?'.$url_pin.'_aop_signature='.$code_sign;
     }
 
@@ -66,20 +68,87 @@ class BaseClient
      */
     public function get(){
         $this->sign();
-        $file =  file_get_contents($this->res_url);
+        $file =  $this->curlRequest($this->res_url,'','GET');
         return json_decode($file,true);
     }
     /**
      * 请求方式
      */
     public function post(){
-
+        $this->sign();
+        $result = $this->curlRequest($this->res_url,$this->postData,'POST');
+        return json_decode($result, true);
     }
 
     //设置地址
     public function setApi($comalibabatradealibabatradegetbuyerView){
         $this->url_info = $comalibabatradealibabatradegetbuyerView;
         return $this;
+    }
+
+    /**
+     * curl 请求
+     * @param $base_url
+     * @param $query_data
+     * @param string $method
+     * @param bool $ssl
+     * @param int $exe_timeout
+     * @param int $conn_timeout
+     * @param int $dns_timeout
+     * @return bool|string
+     */
+    public function curlRequest($base_url, $query_data, $method = 'get', $ssl = true, $exe_timeout = 10, $conn_timeout = 10, $dns_timeout = 3600)
+    {
+
+        $ch = curl_init();
+
+        if ( $method == 'get' ) {
+            //method get
+            if ( ( !empty($query_data) )
+                && ( is_array($query_data) )
+            ){
+                $connect_symbol = (strpos($base_url, '?')) ? '&' : '?';
+                foreach($query_data as $key => $val) {
+                    if ( is_array($val) ) {
+                        $val = serialize($val);
+                    }
+                    $base_url .= $connect_symbol . $key . '=' . rawurlencode($val);
+                    $connect_symbol = '&';
+                }
+            }
+        } else {
+            if ( ( !empty($query_data) )
+                && ( is_array($query_data) )
+            ){
+                foreach($query_data as $key => $val) {
+                    if ( is_array($val) ) {
+                        $query_data[$key] = serialize($val);
+                    }
+                }
+            }
+            //method post
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $query_data);
+        }
+        curl_setopt($ch, CURLOPT_URL, $base_url);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $conn_timeout);
+        curl_setopt($ch, CURLOPT_DNS_CACHE_TIMEOUT, $dns_timeout);
+        curl_setopt($ch, CURLOPT_TIMEOUT, $exe_timeout);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        // 关闭ssl验证
+        if($ssl){
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        }
+
+        $output = curl_exec($ch);
+
+        if ( $output === FALSE )
+            $output = '';
+
+        curl_close($ch);
+        return $output;
     }
 
 }
