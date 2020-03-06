@@ -69,6 +69,13 @@ class AliOpen extends \Liaosp\AliOpen\AliOpen
 
 https://www.cnblogs.com/liaosp/p/11075260.html
 
+
+更新日志：
+
+1.0.2 添加post请求方法
+
+
+
 ## Contributing
 
 You can contribute in one of three ways:
